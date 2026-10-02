@@ -273,6 +273,20 @@
   .close__meta b { color: var(--v-ink); font-weight: 600; display: block; font-size: var(--v-t-xs); letter-spacing: var(--v-track-wide); text-transform: uppercase; margin-bottom: .2em; }
   .foot { display: flex; justify-content: space-between; gap: var(--v-4); padding: var(--v-6) 0 0; border-top: 1px solid var(--v-hair); font-size: var(--v-t-xs); color: var(--v-ink-soft); flex-wrap: wrap; }
   .foot a { color: inherit; }
+  .order { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 12px; margin-top: var(--v-6); max-width: 620px; }
+  .order label { display: flex; flex-direction: column; gap: 6px; font-size: .85rem; color: var(--v-ink-soft); }
+  .order label.wide { grid-column: 1 / -1; }
+  .order input, .order select { font: inherit; font-size: 1rem; color: var(--v-ink); background: rgb(var(--surface-rgb)); border: 1px solid var(--v-hair); border-radius: 10px; padding: 12px 14px; width: 100%; min-height: 48px; }
+  .order input::placeholder { color: var(--v-ink-soft); opacity: .7; }
+  .order input:focus, .order select:focus { outline: none; border-color: var(--v-accent); box-shadow: 0 0 0 3px rgb(var(--accent-rgb) / .22); }
+  .v-page button.v-btn { background: var(--v-accent); color: var(--v-accent-ink); font-weight: 600; }
+  .v-page button.v-btn:disabled { opacity: .55; cursor: default; }
+  .order__foot { grid-column: 1 / -1; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 4px; }
+  .order__ok { grid-column: 1 / -1; color: var(--v-accent); font-weight: 600; }
+  .order__ok small { display: block; color: var(--v-ink-soft); font-weight: 400; margin-top: 4px; }
+  .close__or { color: var(--v-ink-soft); font-size: var(--v-t-sm); }
+  @media (max-width: 640px) { .order { grid-template-columns: minmax(0,1fr); } }
+  @media (max-width: 860px) { .order label, .close__or { font-size: .95rem; } }
   @media (max-width: 860px) {
     .close { min-height: 0; padding: clamp(5rem, 12vh, 7rem) var(--v-gutter) calc(2.5rem + env(safe-area-inset-bottom)); }
     .close__inner { grid-template-columns: 1fr; gap: var(--v-7); padding-bottom: var(--v-8); }
@@ -559,8 +573,17 @@
           <div data-v-in data-v-stagger="80">
             <h2 class="v-display v-display--lg">Выберите время – приезжайте без очереди</h2>
             <p class="v-lede">Напишите марку машины и размер колёс – назовём цену и предложим свободные окна на сегодня и завтра.</p>
+            <form class="order" id="order">
+              <label>Имя<input name="name" autocomplete="name" required></label>
+              <label>Телефон<input name="phone" type="tel" autocomplete="tel" required></label>
+              <label>Машина и размер колёс<input name="car" placeholder="Например, Kia Rio, R15"></label>
+              <label>Когда удобно<select name="when"><option>Сегодня</option><option>Завтра</option><option>Другой день – уточним по телефону</option></select></label>
+              <label class="wide">Что нужно<select name="need"><option>Сезонная переобувка</option><option>Ремонт прокола</option><option>Балансировка</option><option>Хранение шин</option></select></label>
+              <div class="order__foot"><button class="v-btn" type="submit">Записаться</button><span class="close__hint" style="margin:0">Перезвоним за 15 минут и предложим свободное окно</span></div>
+              <p class="order__ok" hidden>Заявка принята.<small>Это демо: заявка никуда не ушла. На боевом сайте она придёт вам в Telegram или на почту.</small></p>
+            </form>
             <div class="close__cta">
-              <a class="v-btn" href="#zapis" rel="noopener" data-v-magnet="0.22" data-v-rise="0">Записаться</a>
+              <span class="close__or">или позвоните</span>
               <a class="close__tel" href="tel:+79000000000">+7 (900) 000-00-00</a>
             </div>
             <p class="close__hint">Не знаете размер – сфотографируйте боковину шины, цифры там. Колёса из хранения подготовим к вашему приезду.</p>
@@ -595,5 +618,14 @@
     function tick() { var s = window.scrollY > 40; if (s !== on) { on = s; bar.classList.toggle('is-scrolled', s); } }
     window.addEventListener('scroll', tick, { passive: true }); tick();
   })();
-</script></body>
+</script><script>
+(function () {
+  var f = document.getElementById('order'); if (!f) return;
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    f.querySelector('.order__ok').hidden = false; f.querySelector('button[type=submit]').disabled = true;
+  });
+})();
+</script>
+</body>
 </html>
