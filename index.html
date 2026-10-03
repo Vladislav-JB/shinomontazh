@@ -20,6 +20,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@1,700&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%23111315%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2710%27 fill=%27none%27 stroke=%27%23f5b82e%27 stroke-width=%274%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%273%27 fill=%27%23f5b82e%27/%3E%3C/svg%3E">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"AutoRepair","name":"Протектор","description":"Шиномонтаж по записи: переобувка за 40 минут, балансировка на стенде, хранение шин.","url":"https://vladislav-jb.github.io/shinomontazh","image":"https://vladislav-jb.github.io/shinomontazh/assets/og.jpg","telephone":"+7 (900) 000-00-00","openingHours":"ежедневно 8:00–22:00","address":{"@type":"PostalAddress","streetAddress":"ул. Заводская, 15","addressCountry":"RU"},"priceRange":"от 2 400 ₽"}
@@ -331,6 +332,15 @@
   .v-page .v-display--xl { line-height: 1.04; }
   .hero__copy .v-display { font-size: clamp(2.2rem, 1rem + 2.8vw, 3.8rem); }
   .bar__mark i { box-shadow: inset 0 0 0 .14em var(--v-canvas); border: .12em solid var(--v-accent); background: var(--v-canvas); }
+
+  /* подпись разработчика в подвале: «Создан в «Веб-Ателье»» – одинаковая на всех сайтах, не менять */
+  .foot { align-items: center; }
+  .foot__demo { flex-basis: 100%; }
+  .foot__made { display: inline-block; white-space: nowrap; font-style: italic; font-size: var(--v-t-sm); line-height: 1.4; color: var(--v-ink-soft); padding: .4em 0; }
+  .foot__made a { display: inline; margin: 0 0 0 .3em; color: inherit; text-decoration: none; font-family: Calibri, "Carlito", sans-serif; font-weight: 700; font-style: italic; font-size: 1.12em; }
+  .foot__made a:hover { color: var(--v-ink); text-decoration: underline; text-underline-offset: .18em; }
+  .foot__made img { display: inline-block; width: 40px; height: 52px; max-width: none; margin-left: .35em; vertical-align: -7px; }
+  @media (max-width: 860px) { .foot__made { font-size: 1rem; } }
 </style>
 </head>
 <body>
@@ -595,7 +605,8 @@
         </div>
         <footer class="foot">
           <span>Шиномонтаж «Протектор»</span>
-          <span class="foot__more">Фото: <a href="https://unsplash.com/license" target="_blank" rel="noopener">Unsplash</a></span>
+          <span class="foot__made">Создан в <a href="http://web-atelie.ru/" target="_blank" rel="noopener">«Веб-Ателье»</a><img src="assets/web-atelie.png" alt="" width="40" height="52" loading="lazy" decoding="async"></span>
+          <span class="foot__demo">Демо-концепт лендинга шиномонтажа. Название, контакты, цены и отзывы условные, фото – из стоковой библиотеки.</span>
         </footer>
       </div>
     </section>
